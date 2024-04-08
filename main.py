@@ -61,7 +61,7 @@ async def load_model(p1: float, p2: float, p3: float, p4: float):
     return "Nu este outlier!" if predictions[0] == 0 else "Este outlier!"
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host = os.environ['HOST'],
                 port=os.environ['PORT'])
