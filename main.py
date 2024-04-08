@@ -5,6 +5,7 @@ from typing import List
 from fastapi import FastAPI
 from pydantic import BaseModel
 from sklearn.neighbors import KNeighborsClassifier
+import os
 
 app = FastAPI()
 
@@ -58,3 +59,9 @@ async def load_model(prediction: Prediction):
 async def load_model(p1: float, p2: float, p3: float, p4: float):
     predictions = clf.predict([[p1, p2, p3, p4]])
     return "Nu este outlier!" if predictions[0] == 0 else "Este outlier!"
+
+
+if _name_ == "_main_":
+    import uvicorn
+    uvicorn.run(app, host = os.environ['HOST'],
+                port=os.environ['PORT'])
